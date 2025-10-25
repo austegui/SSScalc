@@ -1,1 +1,1 @@
-web: gunicorn --worker-tmp-dir /dev/shm app:app --bind 0.0.0.0:8080 --workers 2 --timeout 120 --log-level info
+web: gunicorn --worker-tmp-dir /dev/shm app:app
