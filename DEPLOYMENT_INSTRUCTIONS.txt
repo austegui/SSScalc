@@ -1,0 +1,62 @@
+PVOUTSSS - Deployment Instructions
+====================================
+
+This archive contains a fresh clone of the pvout repository ready to deploy to:
+https://github.com/austegui/pvoutsss
+
+Files included:
+- app.py (Flask application)
+- config.json (Configuration file)
+- pvout_data.json (Data file - 8.3MB)
+- requirements.txt (Python dependencies)
+- .gitignore (Git ignore rules)
+
+DEPLOYMENT STEPS:
+=================
+
+1. Extract the archive:
+   tar -xzf pvoutsss-export.tar.gz -C pvoutsss-new
+   cd pvoutsss-new
+
+2. Initialize git repository:
+   git init
+   git branch -m main
+
+3. Add and commit all files:
+   git add .
+   git commit -m "Initial commit - Clone of pvout repository"
+
+4. Add the remote and push:
+   git remote add origin https://github.com/austegui/pvoutsss.git
+   git push -u origin main
+
+ALTERNATIVE: Push to a feature branch first:
+   git branch -m feature/initial-setup
+   git push -u origin feature/initial-setup
+
+5. Verify the repository on GitHub:
+   Visit https://github.com/austegui/pvoutsss
+
+NOTES:
+======
+- All files have been included with no git history (fresh start)
+- The repository is ready to be pushed to GitHub
+- Make sure you have GitHub authentication configured (SSH key or token)
+- The pvout_data.json file is quite large (8.3MB), so the initial push may take a moment
+
+REQUIREMENTS:
+=============
+The application requires:
+- Python (Flask application)
+- Flask
+- Flask-CORS
+- requests
+See requirements.txt for full dependency list
+
+NEXT STEPS:
+===========
+After pushing to GitHub, you can:
+1. Set up CI/CD pipelines
+2. Configure deployment to your hosting platform
+3. Update any environment-specific configurations
+4. Start building the new version!
