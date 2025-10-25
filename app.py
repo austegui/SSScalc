@@ -6,7 +6,7 @@ import time
 import logging
 import requests
 from urllib.parse import urlparse, parse_qs
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify, Response, render_template
 from flask_cors import CORS
 
 # ------------------------------------------------------------------------------
@@ -175,6 +175,11 @@ def calcular_tarifa_detalle(kwh: float, tarifa: dict) -> dict:
 # ------------------------------------------------------------------------------
 # Endpoints
 # ------------------------------------------------------------------------------
+@app.get("/")
+def index():
+    """Serve the main frontend application"""
+    return render_template("index.html")
+
 @app.get("/config")
 def get_config():
     safe_keys = ["ui", "provincias", "tarifas", "sistemas", "precios_sistema_por_paneles", "formatos", "finance"]
