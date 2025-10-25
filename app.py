@@ -57,10 +57,13 @@ def send_webhook(event: str, payload: dict):
 # ------------------------------------------------------------------------------
 # Carga de configuración y datos
 # ------------------------------------------------------------------------------
-with open("config.json", "r", encoding="utf-8") as f:
+# Get the directory where this script is located
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+with open(os.path.join(BASE_DIR, "config.json"), "r", encoding="utf-8") as f:
     CONFIG = json.load(f)
 
-with open("pvout_data.json", "r", encoding="utf-8") as f:
+with open(os.path.join(BASE_DIR, "pvout_data.json"), "r", encoding="utf-8") as f:
     PVOUT_DATA = json.load(f)
 
 EMAIL_RE = re.compile(CONFIG["validacion"]["lead"]["email_regex"])
