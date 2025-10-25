@@ -5,6 +5,8 @@ services:
     github:
       branch: main
       deploy_on_push: true
+    source_dir: /
+    build_command: pip install -r requirements.txt
     run_command: gunicorn app:app --bind 0.0.0.0:8080 --workers 2 --timeout 120 --log-level info
     http_port: 8080
     health_check:
