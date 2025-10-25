@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Solar Solution Savings Panamá</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary: #8b5cf6;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --surface: #ffffff;
+      --surface-alt: #f8fafc;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --border: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 16px;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 32px;
+      padding: 24px 0;
+    }
+
+    .header h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      letter-spacing: -0.02em;
+    }
+
+    .header p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      opacity: 0.95;
+      font-weight: 500;
+    }
+
+    /* Progress Indicator */
+    .progress-steps {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius-lg);
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .step.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .step.completed {
+      background: rgba(16, 185, 129, 0.9);
+    }
+
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .step.active .step-number {
+      background: var(--primary);
+      color: white;
+    }
+
+    .step.completed .step-number {
+      background: white;
+      color: var(--success);
+    }
+
+    /* Cards */
+    .card {
+      background: white;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 24px 28px;
+    }
+
+    .card-header h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-body {
+      padding: 28px;
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 16px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      background: var(--surface);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-control:disabled {
+      background: var(--surface-alt);
+      cursor: not-allowed;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 14px 28px;
+      border: 0;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-md);
+      font-family: inherit;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Months Grid */
+    .months-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 12px;
+    }
+
+    .month-input {
+      position: relative;
+    }
+
+    .month-input input {
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Breakdown Section */
+    .breakdown {
+      background: var(--surface-alt);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .breakdown h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breakdown-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .breakdown-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .breakdown-list li:last-child {
+      border-bottom: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding-top: 14px;
+      color: var(--primary);
+    }
+
+    .breakdown-list .label {
+      color: var(--text-secondary);
+    }
+
+    .breakdown-list .value {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+      color: white;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      text-align: center;
+      margin: 20px 0;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .highlight-box.warning {
+      background: linear-gradient(135deg, var(--warning) 0%, #d97706 100%);
+    }
+
+    .highlight-box h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      opacity: 0.95;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .highlight-box .value {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin: 8px 0;
+    }
+
+    .highlight-box .subtitle {
+      opacity: 0.9;
+      font-size: 0.9rem;
+    }
+
+    /* Map Container */
+    .map-container {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      margin: 16px 0;
+    }
+
+    #map {
+      width: 100%;
+      height: 400px;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+    }
+
+    /* Messages */
+    .message {
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+
+    .message.success {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .message.error {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--danger);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .message.info {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+    }
+
+    /* Utility */
+    .hidden {
+      display: none !important;
+    }
+
+    .text-muted {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mt-4 {
+      margin-top: 16px;
+    }
+
+    .mb-4 {
+      margin-bottom: 16px;
+    }
+
+    /* Loading Spinner */
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0;
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .months-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .progress-steps {
+        gap: 8px;
+      }
+
+      .step {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+      }
+
+      .step-number {
+        width: 24px;
+        height: 24px;
+        font-size: 0.75rem;
+      }
+    }
+
+    /* System Details Grid */
+    .system-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 24px 0;
+    }
+
+    .detail-card {
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .detail-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .detail-card h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .detail-card .value {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .detail-card .unit {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-left: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>⚡ Solar Solution Savings</h1>
+      <p>Calcula tu consumo eléctrico y descubre tu potencial solar en Panamá</p>
+    </div>
+
+    <!-- Progress Steps -->
+    <div class="progress-steps">
+      <div class="step active" id="step-1">
+        <div class="step-number">1</div>
+        <span>Contacto</span>
+      </div>
+      <div class="step" id="step-2">
+        <div class="step-number">2</div>
+        <span>Consumo</span>
+      </div>
+      <div class="step" id="step-3">
+        <div class="step-number">3</div>
+        <span>Ubicación</span>
+      </div>
+      <div class="step" id="step-4">
+        <div class="step-number">4</div>
+        <span>Resultados</span>
+      </div>
+    </div>
+
+    <!-- Step 1: Lead -->
+    <div class="card" id="card-lead">
+      <div class="card-header">
+        <h2>🙋‍♂️ Datos de contacto</h2>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label" for="lead-name">Nombre completo</label>
+          <input class="form-control" id="lead-name" placeholder="Ej. Juan Pérez" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="lead-email">Correo electrónico</label>
+          <input class="form-control" id="lead-email" placeholder="Ej. juan@ejemplo.com" type="email" autocomplete="email">
+        </div>
+        <button type="button" class="btn" id="btn-lead">
+          Continuar
+        </button>
+        <div id="lead-msg"></div>
+      </div>
+    </div>
+
+    <!-- Step 2: Consumo -->
+    <div class="card hidden" id="card-consumo">
+      <div class="card-header">
+        <h2>📊 Análisis de Consumo Eléctrico</h2>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label" for="provincia">Selecciona tu provincia</label>
+          <select id="provincia" class="form-control">
+            <option value="">-- Elige una provincia --</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Consumo mensual detallado (kWh)</label>
+          <div class="months-grid" id="months"></div>
+          <p class="text-muted mt-4">
+            💡 Ingresa el consumo de los meses que tengas disponibles. Con al menos 1 mes calcularemos tu promedio.
+          </p>
+        </div>
+        <button type="button" class="btn" id="btn-consumo">
+          Analizar mi consumo
+        </button>
+        <div id="consumo-out" class="hidden">
+          <div class="stats-grid" id="consumo-stats"></div>
+          <div id="consumo-breakdown"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Mapa + PVOUT -->
+    <div class="card hidden" id="card-mapa">
+      <div class="card-header">
+        <h2>🗺️ Ubicación y Radiación Solar</h2>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label" for="autocomplete">Busca tu dirección</label>
+          <input id="autocomplete" class="form-control" placeholder="Ej. Avenida Balboa, Ciudad de Panamá" />
+          <p class="text-muted mt-4">
+            📍 Haz clic en el mapa o usa el buscador para seleccionar tu ubicación. Calcularemos automáticamente la radiación solar disponible.
+          </p>
+        </div>
+        <div class="map-container">
+          <div id="map"></div>
+        </div>
+        <div class="form-group mt-4">
+          <label class="form-label">PVOUT - Radiación Solar (kWh/kWp/día)</label>
+          <input class="form-control" id="pvout" readonly placeholder="Se calculará automáticamente">
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Resultados -->
+    <div class="card hidden" id="card-solar">
+      <div class="card-header">
+        <h2>☀️ Tu Sistema Solar Personalizado</h2>
+      </div>
+      <div class="card-body" id="solar-body"></div>
+    </div>
+  </div>
+
+  <script>
+    const BACKEND_BASE_URL = window.location.origin;
+
+    let CONFIG = null;
+    let LEAD = { lead_id: "", nombre: "", email: "" };
+    let PROVINCIA_ID = "";
+    let CONSUMO = null;
+    let MAP, MARKER, AUTOCOMPLETE, LAST_COORDS = null;
+
+    const $ = (id) => document.getElementById(id);
+
+    const fmtMoney = (v) => {
+      if (!CONFIG) return `$${Number(v || 0).toFixed(2)}`;
+      const f = CONFIG.formatos?.moneda || { simbolo: '$', decimales: 2 };
+      return f.simbolo + Number(v || 0).toLocaleString('es-PA', {
+        minimumFractionDigits: f.decimales,
+        maximumFractionDigits: f.decimales
+      });
+    };
+
+    const updateStep = (stepNum) => {
+      for (let i = 1; i <= 4; i++) {
+        const step = $(`step-${i}`);
+        step.classList.remove('active', 'completed');
+        if (i < stepNum) step.classList.add('completed');
+        if (i === stepNum) step.classList.add('active');
+      }
+    };
+
+    function ensureMapsReady(maxTries = 80, intervalMs = 150) {
+      return new Promise((resolve, reject) => {
+        let tries = 0;
+        const tick = () => {
+          const ok = window.google && google.maps && google.maps.places && typeof google.maps.Map === "function";
+          if (ok) return resolve();
+          if (++tries >= maxTries) return reject(new Error("Google Maps no cargó correctamente"));
+          setTimeout(tick, intervalMs);
+        };
+        tick();
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      $("btn-lead").addEventListener("click", submitLead);
+      $("btn-consumo").addEventListener("click", analizarConsumo);
+      loadConfig().catch(e => {
+        console.error("Error de configuración:", e);
+        showMessage('lead-msg', 'Error al cargar la configuración. Por favor, recarga la página.', 'error');
+      });
+    });
+
+    function showMessage(elementId, text, type = 'info') {
+      const el = $(elementId);
+      el.className = `message ${type}`;
+      el.textContent = text;
+      el.classList.remove('hidden');
+    }
+
+    async function loadConfig() {
+      const r = await fetch(`${BACKEND_BASE_URL}/config`);
+      if (!r.ok) throw new Error("Error al cargar configuración");
+      CONFIG = await r.json();
+
+      const sel = $("provincia");
+      sel.innerHTML = '<option value="">-- Elige una provincia --</option>';
+      (CONFIG.provincias || []).forEach(p => {
+        const opt = document.createElement("option");
+        opt.value = p.id;
+        opt.textContent = p.nombre;
+        sel.appendChild(opt);
+      });
+
+      const months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+      const wrap = $("months");
+      wrap.innerHTML = "";
+      months.forEach((m, i) => {
+        const inp = document.createElement("input");
+        inp.type = "number";
+        inp.min = "0";
+        inp.placeholder = m;
+        inp.className = "form-control";
+        inp.id = `m${i + 1}`;
+        wrap.appendChild(inp);
+      });
+    }
+
+    async function submitLead() {
+      const nombre = $("lead-name").value.trim();
+      const email = $("lead-email").value.trim();
+
+      if (!nombre || !email) {
+        showMessage('lead-msg', 'Por favor, completa todos los campos', 'error');
+        return;
+      }
+
+      $("btn-lead").disabled = true;
+      $("btn-lead").innerHTML = '<div class="spinner"></div> Guardando...';
+
+      try {
+        const r = await fetch(`${BACKEND_BASE_URL}/lead`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nombre, email, utm: {} })
+        });
+        const d = await r.json();
+        if (!r.ok) throw new Error(d.error || "Error al guardar");
+
+        LEAD = { lead_id: d.lead_id, nombre, email };
+        showMessage('lead-msg', '✓ Datos guardados correctamente', 'success');
+
+        setTimeout(() => {
+          $("card-lead").classList.add("hidden");
+          $("card-consumo").classList.remove("hidden");
+          updateStep(2);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 800);
+      } catch (e) {
+        console.error(e);
+        showMessage('lead-msg', '⚠ ' + e.message, 'error');
+      } finally {
+        $("btn-lead").disabled = false;
+        $("btn-lead").textContent = 'Continuar';
+      }
+    }
+
+    async function analizarConsumo() {
+      const provincia_id = $("provincia").value;
+      if (!provincia_id) {
+        alert("Por favor, selecciona una provincia");
+        return;
+      }
+      PROVINCIA_ID = provincia_id;
+
+      const consumos = [];
+      for (let i = 1; i <= 12; i++) {
+        const v = parseFloat(($("m" + i).value || "").trim());
+        consumos.push(isNaN(v) ? 0 : v);
+      }
+
+      $("btn-consumo").disabled = true;
+      $("btn-consumo").innerHTML = '<div class="spinner"></div> Analizando...';
+
+      try {
+        const r = await fetch(`${BACKEND_BASE_URL}/calculate/consumption`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ provincia_id, consumos_kwh: consumos })
+        });
+        const d = await r.json();
+        if (!r.ok) throw new Error(d.error || "Error en el cálculo");
+
+        CONSUMO = {
+          mensual_promedio_kwh: d.consumo.mensual_promedio_kwh,
+          diario_promedio_kwh: d.consumo.diario_promedio_kwh,
+          meses_cargados: d.consumo.meses_cargados,
+          costo_actual_mensual: d.finanzas.costo_actual_mensual,
+          tarifa: d.finanzas.tarifa,
+          tarifa_desglose: d.tarifa_desglose
+        };
+
+        const g = $("consumo-stats");
+        g.innerHTML = `
+          <div class="stat-card">
+            <div class="stat-value">${Math.round(CONSUMO.mensual_promedio_kwh)}</div>
+            <div class="stat-label">kWh Mensuales</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${CONSUMO.diario_promedio_kwh.toFixed(1)}</div>
+            <div class="stat-label">kWh Diarios</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${fmtMoney(CONSUMO.costo_actual_mensual)}</div>
+            <div class="stat-label">Costo Mensual</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${fmtMoney(CONSUMO.costo_actual_mensual * 12)}</div>
+            <div class="stat-label">Costo Anual</div>
+          </div>
+        `;
+
+        $("consumo-breakdown").innerHTML = renderTarifaBreakdown(
+          d.tarifa_desglose,
+          `Desglose de Factura Actual - ${CONFIG.tarifas[CONSUMO.tarifa]?.nombre || CONSUMO.tarifa}`
+        );
+
+        $("consumo-out").classList.remove("hidden");
+
+        setTimeout(() => {
+          $("card-mapa").classList.remove("hidden");
+          updateStep(3);
+          window.scrollTo({ top: $("card-mapa").offsetTop - 20, behavior: 'smooth' });
+        }, 500);
+
+        ensureMapsReady()
+          .then(() => initMap())
+          .catch(err => {
+            console.error(err);
+            alert("No se pudo cargar Google Maps. Verifica la configuración.");
+          });
+
+      } catch (e) {
+        alert("Error: " + e.message);
+      } finally {
+        $("btn-consumo").disabled = false;
+        $("btn-consumo").textContent = 'Analizar mi consumo';
+      }
+    }
+
+    function renderTarifaBreakdown(bd, title) {
+      if (!bd) return "";
+
+      const items = [];
+      if (bd.fijo > 0) {
+        items.push(`<li><span class="label">Cargo fijo</span><span class="value">${fmtMoney(bd.fijo)}</span></li>`);
+      }
+
+      (bd.tramos || []).forEach(t => {
+        items.push(`
+          <li>
+            <span class="label">Tramo ${t.label} (${t.kwh} kWh × ${fmtMoney(t.precio_unit)})</span>
+            <span class="value">${fmtMoney(t.subtotal)}</span>
+          </li>
+        `);
+      });
+
+      if (bd.comercializacion > 0) {
+        items.push(`<li><span class="label">Comercialización</span><span class="value">${fmtMoney(bd.comercializacion)}</span></li>`);
+      }
+
+      items.push(`<li><span class="label">TOTAL</span><span class="value">${fmtMoney(bd.total)}</span></li>`);
+
+      return `
+        <div class="breakdown">
+          <h3>💰 ${title}</h3>
+          <ul class="breakdown-list">
+            ${items.join('')}
+          </ul>
+        </div>
+      `;
+    }
+
+    function initMap() {
+      const mapEl = $("map");
+      if (!mapEl) return console.error("Elemento de mapa no encontrado");
+      mapEl.innerHTML = "";
+
+      const panama = { lat: 8.9824, lng: -79.5199 };
+      MAP = new google.maps.Map(mapEl, {
+        zoom: 8,
+        center: panama,
+        styles: [
+          {
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [{ visibility: "off" }]
+          }
+        ]
+      });
+
+      const acInput = $("autocomplete");
+      AUTOCOMPLETE = new google.maps.places.Autocomplete(acInput, {
+        componentRestrictions: { country: "pa" },
+        fields: ["geometry", "name", "formatted_address"]
+      });
+
+      if (AUTOCOMPLETE && MAP && typeof AUTOCOMPLETE.bindTo === "function") {
+        AUTOCOMPLETE.bindTo("bounds", MAP);
+      }
+
+      AUTOCOMPLETE.addListener("place_changed", () => {
+        const place = AUTOCOMPLETE.getPlace();
+        if (!place.geometry || !place.geometry.location) return;
+        MAP.setCenter(place.geometry.location);
+        MAP.setZoom(15);
+        placeMarkerAndCalc(place.geometry.location.lat(), place.geometry.location.lng());
+      });
+
+      MAP.addListener("click", (e) => {
+        placeMarkerAndCalc(e.latLng.lat(), e.latLng.lng());
+      });
+    }
+
+    async function placeMarkerAndCalc(lat, lng) {
+      if (MARKER) MARKER.setMap(null);
+      MARKER = new google.maps.Marker({
+        map: MAP,
+        position: { lat, lng },
+        animation: google.maps.Animation.DROP
+      });
+      LAST_COORDS = { lat, lng };
+      $("pvout").value = "⏳ Calculando radiación solar...";
+
+      try {
+        const r = await fetch(`${BACKEND_BASE_URL}/pvout?lat=${lat}&lng=${lng}`);
+        const d = await r.json();
+        if (!r.ok) throw new Error(d.error || "Error al calcular PVOUT");
+        $("pvout").value = d.pvout + " kWh/kWp/día";
+        await calcularSolar(d.pvout);
+      } catch (e) {
+        $("pvout").value = "";
+        alert("Error al calcular radiación solar: " + e.message);
+      }
+    }
+
+    async function calcularSolar(pvout) {
+      if (!CONSUMO) {
+        alert("Primero debes calcular tu consumo");
+        return;
+      }
+
+      const body = {
+        lead: LEAD,
+        provincia_id: PROVINCIA_ID,
+        pvout: Number(pvout),
+        consumo: {
+          mensual_promedio_kwh: Number(CONSUMO.mensual_promedio_kwh),
+          diario_promedio_kwh: Number(CONSUMO.diario_promedio_kwh),
+          meses_cargados: Number(CONSUMO.meses_cargados)
+        },
+        lat: LAST_COORDS?.lat || null,
+        lng: LAST_COORDS?.lng || null
+      };
+
+      $("card-solar").classList.remove("hidden");
+      $("solar-body").innerHTML = '<div class="text-center text-muted">⏳ Calculando tu sistema solar personalizado...</div>';
+      updateStep(4);
+
+      setTimeout(() => {
+        window.scrollTo({ top: $("card-solar").offsetTop - 20, behavior: 'smooth' });
+      }, 300);
+
+      try {
+        const r = await fetch(`${BACKEND_BASE_URL}/calculate/solar`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+        const d = await r.json();
+        if (!r.ok) throw new Error(d.error || "Error en el cálculo solar");
+        renderSolar(d);
+      } catch (e) {
+        $("solar-body").innerHTML = `<div class="message error">⚠ ${e.message}</div>`;
+      }
+    }
+
+    function renderSolar(d) {
+      const f = d.finanzas;
+      const dim = d.dimensionamiento;
+      const p = d.produccion;
+      const dec = CONFIG.finance?.payback_decimals ?? 1;
+      const tarifaNombre = CONFIG.tarifas[f.tarifa]?.nombre || f.tarifa;
+
+      let priceBlock = `
+        <div class="highlight-box">
+          <h3>Inversión del Sistema</h3>
+          <div class="value">${fmtMoney(f.precio_final_sistema)}</div>
+          <div class="subtitle">Precio final con instalación incluida</div>
+        </div>
+      `;
+
+      if (d.ui?.cotizacion_personalizada) {
+        priceBlock = `
+          <div class="highlight-box warning">
+            <h3>⚠️ Cotización Personalizada</h3>
+            <div class="subtitle" style="margin-top: 12px;">
+              Tu sistema requiere más de ${CONFIG.sistemas.reglas_dimensionamiento.max_paneles_precio} paneles.
+              Contáctanos para obtener un precio personalizado.
+            </div>
+          </div>
+        `;
+      }
+
+      $("solar-body").innerHTML = `
+        <!-- System Overview -->
+        <div class="system-details">
+          <div class="detail-card">
+            <h4>Paneles Solares</h4>
+            <div class="value">${dim.paneles}<span class="unit">unidades</span></div>
+          </div>
+          <div class="detail-card">
+            <h4>Microinversores</h4>
+            <div class="value">${dim.inversores}<span class="unit">unidades</span></div>
+          </div>
+          <div class="detail-card">
+            <h4>Capacidad de Expansión</h4>
+            <div class="value">${dim.capacidad_expansion_paneles}<span class="unit">paneles</span></div>
+          </div>
+        </div>
+
+        <!-- Production Stats -->
+        <div class="breakdown">
+          <h3>⚡ Producción de Energía Estimada</h3>
+          <ul class="breakdown-list">
+            <li>
+              <span class="label">Producción diaria</span>
+              <span class="value">${p.diaria_kwh} kWh</span>
+            </li>
+            <li>
+              <span class="label">Producción mensual</span>
+              <span class="value">${p.mensual_kwh} kWh</span>
+            </li>
+            <li>
+              <span class="label">Producción anual</span>
+              <span class="value">${p.anual_kwh} kWh</span>
+            </li>
+            <li>
+              <span class="label">Cobertura estimada</span>
+              <span class="value">${p.cobertura_pct}%</span>
+            </li>
+          </ul>
+        </div>
+
+        ${priceBlock}
+
+        <!-- Financial Analysis -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value">${fmtMoney(f.costo_actual_mensual)}</div>
+            <div class="stat-label">Costo Actual Mensual</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${fmtMoney(f.nuevo_costo_mensual)}</div>
+            <div class="stat-label">Nuevo Costo Mensual</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${fmtMoney(f.ahorro_mensual_estimado)}</div>
+            <div class="stat-label">Ahorro Mensual</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${f.reduccion_factura_pct}%</div>
+            <div class="stat-label">Reducción de Factura</div>
+          </div>
+        </div>
+
+        <!-- ROI Information -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value">${f.payback_years.toFixed(dec)}</div>
+            <div class="stat-label">Años de Recuperación</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${fmtMoney(f.ahorro_30_anos)}</div>
+            <div class="stat-label">Ahorro Total a 30 Años</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${fmtMoney(f.ahorro_mensual_estimado * 12)}</div>
+            <div class="stat-label">Ahorro Anual</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${fmtMoney((f.ahorro_mensual_estimado * 12 * 30) - f.precio_final_sistema)}</div>
+            <div class="stat-label">Ganancia Neta 30 Años</div>
+          </div>
+        </div>
+
+        ${renderTarifaBreakdown(d.tarifa_desglose_actual, `Desglose de Costo Actual - ${tarifaNombre}`)}
+        ${renderTarifaBreakdown(d.tarifa_desglose_produccion, `Desglose de Ahorro por Producción Solar - ${tarifaNombre}`)}
+
+        <div class="highlight-box" style="margin-top: 24px;">
+          <h3>🌱 Impacto Ambiental Estimado</h3>
+          <div class="subtitle" style="margin-top: 12px;">
+            Tu sistema solar evitará la emisión de aproximadamente <strong>${(p.anual_kwh * 0.0007).toFixed(1)} toneladas de CO₂</strong> por año,
+            equivalente a plantar <strong>${Math.round(p.anual_kwh * 0.0007 * 16)}</strong> árboles anualmente.
+          </div>
+        </div>
+
+        <div class="text-center" style="margin-top: 32px; padding: 24px; background: var(--surface-alt); border-radius: var(--radius-lg);">
+          <h3 style="margin-bottom: 12px; color: var(--text-primary);">🎉 ¡Listo para dar el siguiente paso?</h3>
+          <p class="text-muted">
+            Un asesor de Solar Solution Savings te contactará pronto para finalizar tu cotización personalizada
+            y responder todas tus preguntas.
+          </p>
+        </div>
+      `;
+    }
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUyEhLhht0zJ2iXXNm_a-FjN5CFsuORIA&libraries=places"></script>
+</body>
+</html>
