@@ -22,7 +22,7 @@
 
   "services": {
     "pvout_api": {
-      "url": "https://monkfish-app-97mah.ondigitalocean.app/pvout",
+      "url": "https://shark-app-cgkfu.ondigitalocean.app/pvout",
       "method": "GET",
       "query_params": ["lat", "lng"],
       "timeout_ms": 8000,
@@ -153,3 +153,4 @@
     }
   }
 }
+
